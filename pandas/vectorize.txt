@@ -1,0 +1,47 @@
+//////////////////////////////////// VECTORIZE ////////////////////////////////////
+
+La vectorisation permet d'effectuer des calculs sur des Series ou des DF de façon ultra rapide, plus que iterrows ou apply.
+
+
+
+
+Exemple sur des objet Series : 
+
+Première façon pour des fonctions de taille plus conséquentes :
+
+////////////////////////////////////
+
+def get_lst_access(id_access):
+    return id_access.str.split("\n")
+
+
+lst_access = get_lst_access(df_access["A intégrer PIM"])
+
+////////////////////////////////////
+
+Deuxième façon avec la même fonction plus simple :
+
+////////////////////////////////////
+
+lst_access = df_access["A intégrer PIM"].str.split("\n")
+
+////////////////////////////////////
+
+Je peux rendre une fonction vectorize avec numpy, j'importe bumpy, puis :
+
+
+def test(lst):
+    print(lst)
+
+
+lst_access = [1,2,3]
+np.vectorize(test)(lst_access)
+
+Ou je peux enregistrer ma function dans une variable et l'appeler plus tard :
+
+func = np.vectorize(test)
+func(lst_access)
+
+////////////////////////////////////
+
+np.vectorize(fonction)(df[col])
